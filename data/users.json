@@ -1,0 +1,21 @@
+[
+  { "_comment": "=== Học sinh ===" },
+  { "id": "u_s01", "username": "minhanh", "password": "123456", "role": "student", "studentId": "s01", "displayName": "Nguyễn Minh Anh" },
+  { "id": "u_s02", "username": "bich",    "password": "123456", "role": "student", "studentId": "s02", "displayName": "Trần Thị Bích" },
+  { "id": "u_s03", "username": "dung",    "password": "123456", "role": "student", "studentId": "s03", "displayName": "Lê Hoàng Dũng" },
+  { "id": "u_s04", "username": "ha",      "password": "123456", "role": "student", "studentId": "s04", "displayName": "Phạm Thu Hà" },
+  { "id": "u_s05", "username": "huy",     "password": "123456", "role": "student", "studentId": "s05", "displayName": "Võ Quang Huy" },
+  { "id": "u_s06", "username": "linh",    "password": "123456", "role": "student", "studentId": "s06", "displayName": "Đặng Ngọc Linh" },
+  { "id": "u_s07", "username": "nam",     "password": "123456", "role": "student", "studentId": "s07", "displayName": "Bùi Thanh Nam" },
+  { "id": "u_s08", "username": "quynh",   "password": "123456", "role": "student", "studentId": "s08", "displayName": "Ngô Thị Quỳnh" },
+
+  { "_comment": "=== Giáo viên — classes: danh sách lớp phụ trách ===" },
+  { "id": "u_t01", "username": "co.nguyen", "password": "123456", "role": "teacher", "classes": ["10A1"], "subject": "toan", "displayName": "Cô Nguyễn Thu" },
+  { "id": "u_t02", "username": "thay.tran", "password": "123456", "role": "teacher", "classes": ["10A2"], "subject": "van",  "displayName": "Thầy Trần Hải" },
+  { "id": "u_t03", "username": "teacher",   "password": "123456", "role": "teacher", "classes": ["10A3"], "subject": null,   "displayName": "Giáo viên Demo" },
+
+  { "_comment": "=== Phụ huynh — studentId: ID học sinh con ===" },
+  { "id": "u_p01", "username": "ph.hung", "password": "123456", "role": "parent", "studentId": "s01", "displayName": "Nguyễn Văn Hùng" },
+  { "id": "u_p02", "username": "ph.bao",  "password": "123456", "role": "parent", "studentId": "s02", "displayName": "Trần Quốc Bảo" },
+  { "id": "u_p03", "username": "parent",  "password": "123456", "role": "parent", "studentId": "s03", "displayName": "Phụ huynh Demo" }
+]

@@ -1,0 +1,229 @@
+/* ============================================================
+   ANIMATIONS — StudentApp
+   Keyframes, transitions, micro-animations
+   ============================================================ */
+
+/* ── Keyframes ──────────────────────────────────────────────── */
+@keyframes orb-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(30px, -40px) scale(1.05); }
+  66%       { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-down {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes modal-slide-up {
+  from { opacity: 0; transform: translateY(40px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes toast-out {
+  from { opacity: 1; transform: translateX(0); max-height: 100px; }
+  to   { opacity: 0; transform: translateX(20px); max-height: 0; padding: 0; margin: 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 hsla(248, 80%, 55%, 0); }
+  50%       { box-shadow: 0 0 0 8px hsla(248, 80%, 55%, 0.12); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes bounce-in {
+  0%   { transform: scale(0.3); opacity: 0; }
+  50%  { transform: scale(1.05); }
+  70%  { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes progress-fill {
+  from { width: 0; }
+}
+
+@keyframes card-appear {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes ripple {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* ── Page Transitions ───────────────────────────────────────── */
+.page-enter {
+  animation: fade-in-up var(--dur-slow) var(--ease-smooth) both;
+}
+
+.page-hero { animation: fade-in-up 0.6s var(--ease-smooth) both; }
+
+/* ── Stagger Children ───────────────────────────────────────── */
+.stagger-children > * {
+  animation: fade-in-up var(--dur-slow) var(--ease-smooth) both;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.10s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.20s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.30s; }
+
+/* ── Role Cards Stagger ─────────────────────────────────────── */
+.role-grid .role-card {
+  animation: card-appear var(--dur-slow) var(--ease-bounce) both;
+}
+.role-grid .role-card:nth-child(1) { animation-delay: 0.1s; }
+.role-grid .role-card:nth-child(2) { animation-delay: 0.2s; }
+.role-grid .role-card:nth-child(3) { animation-delay: 0.3s; }
+
+/* ── Stat Cards ─────────────────────────────────────────────── */
+.stat-grid .stat-card {
+  animation: card-appear var(--dur-slow) var(--ease-smooth) both;
+}
+.stat-grid .stat-card:nth-child(1) { animation-delay: 0.05s; }
+.stat-grid .stat-card:nth-child(2) { animation-delay: 0.10s; }
+.stat-grid .stat-card:nth-child(3) { animation-delay: 0.15s; }
+.stat-grid .stat-card:nth-child(4) { animation-delay: 0.20s; }
+
+/* ── Table rows ─────────────────────────────────────────────── */
+.data-table tbody tr {
+  animation: fade-in-up 0.3s var(--ease-smooth) both;
+}
+
+/* ── Loading Spinner ────────────────────────────────────────── */
+.spinner {
+  width: 24px; height: 24px;
+  border: 3px solid var(--border-subtle);
+  border-top-color: var(--brand-500);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+/* ── Shimmer skeleton ───────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg,
+    var(--bg-elevated) 25%,
+    var(--bg-overlay)  50%,
+    var(--bg-elevated) 75%
+  );
+  background-size: 200% auto;
+  animation: shimmer 1.4s infinite;
+  border-radius: var(--radius-md);
+}
+
+/* ── Pulse ──────────────────────────────────────────────────── */
+.pulse { animation: pulse-glow 2s ease-in-out infinite; }
+
+/* ── Hover lift ─────────────────────────────────────────────── */
+.hover-lift {
+  transition: transform var(--dur-mid) var(--ease-smooth),
+              box-shadow var(--dur-mid) var(--ease-smooth);
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ── Ripple effect ──────────────────────────────────────────── */
+.ripple-container { position: relative; overflow: hidden; }
+.ripple-effect {
+  position: absolute;
+  width: 20px; height: 20px;
+  margin-top: -10px; margin-left: -10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.25);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+/* ── Shine button ───────────────────────────────────────────── */
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.5s;
+}
+.btn-primary:hover::after { left: 150%; }
+
+/* ── Score fill animation ───────────────────────────────────── */
+.progress-bar-fill { animation: progress-fill 1s var(--ease-smooth) both; }
+
+/* ── Notification ping ──────────────────────────────────────── */
+@keyframes ping {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+.ping-dot {
+  position: relative;
+  display: inline-flex;
+}
+.ping-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--color-error);
+  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* ── Reduce motion ──────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

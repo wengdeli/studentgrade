@@ -1,0 +1,12 @@
+[
+  { "value": "toan", "label": "Toán học",   "icon": "📐" },
+  { "value": "van",  "label": "Ngữ văn",    "icon": "📚" },
+  { "value": "anh",  "label": "Tiếng Anh",  "icon": "🌐" },
+  { "value": "ly",   "label": "Vật lý",     "icon": "⚡" },
+  { "value": "hoa",  "label": "Hóa học",    "icon": "🧪" },
+  { "value": "sinh", "label": "Sinh học",   "icon": "🌿" },
+  { "value": "su",   "label": "Lịch sử",    "icon": "🏛️" },
+  { "value": "dia",  "label": "Địa lý",     "icon": "🌍" },
+  { "value": "tin",  "label": "Tin học",    "icon": "💻" },
+  { "value": "gdcd", "label": "GDCD",       "icon": "⚖️" }
+]

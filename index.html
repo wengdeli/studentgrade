@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="StudentGrade — Nền tảng quản lý bài tập và học tập thông minh cho học sinh, giáo viên và phụ huynh" />
+  <meta name="keywords" content="học sinh, giáo viên, phụ huynh, bài tập, điểm số, quản lý lớp học" />
+  <title>StudentGrade — Quản lý học tập thông minh</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/design-system.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+  <!-- Background decoration -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- App Root -->
+  <div id="app">
+    <!-- Header -->
+    <header class="app-header" id="app-header" hidden>
+      <div class="header-inner">
+        <a href="#/" class="brand" id="btn-home">
+          <span class="brand-icon">🎓</span>
+          <span class="brand-name">StudentGrade</span>
+        </a>
+        <div class="header-actions">
+          <div class="role-badge" id="role-badge" hidden></div>
+          <!-- User info (shown when logged in) -->
+          <div id="header-user" hidden></div>
+          <!-- Login button (shown when logged out) -->
+          <button class="btn btn-primary btn-sm" id="btn-header-login" aria-label="Đăng nhập" style="gap:var(--sp-2)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+              <polyline points="10 17 15 12 10 7"/>
+              <line x1="15" y1="12" x2="3" y2="12"/>
+            </svg>
+            Đăng nhập
+          </button>
+          <button class="btn-icon" id="btn-theme" title="Đổi giao diện" aria-label="Toggle dark mode">
+            <span class="icon-sun">☀️</span>
+            <span class="icon-moon">🌙</span>
+          </button>
+          <button class="btn-icon btn-logout" id="btn-logout" title="Đăng xuất" aria-label="Đăng xuất" hidden>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+              <polyline points="16 17 21 12 16 7"/>
+              <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Container -->
+    <main id="page-container" class="page-container">
+      <!-- Views rendered here by router -->
+    </main>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Modal Overlay -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal" id="modal" style="max-width:min(820px,95vw);width:100%">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title"></h2>
+        <button class="btn-icon modal-close" id="modal-close" aria-label="Đóng">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/fileViewer.js"></script>
+  <script src="js/views/roleSelect.js"></script>
+  <script src="js/views/student.js"></script>
+  <script src="js/views/teacher.js"></script>
+  <script src="js/views/parent.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

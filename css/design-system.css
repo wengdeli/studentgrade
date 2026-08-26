@@ -1,0 +1,350 @@
+/* ============================================================
+   DESIGN SYSTEM — StudentApp
+   Color tokens, typography, layout, utilities
+   ============================================================ */
+
+/* ── Google Fonts fallback ─────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+/* ── CSS Custom Properties ──────────────────────────────────── */
+:root {
+  /* Brand palette */
+  --brand-50:  hsl(248, 100%, 97%);
+  --brand-100: hsl(248, 96%, 93%);
+  --brand-200: hsl(248, 94%, 85%);
+  --brand-300: hsl(248, 90%, 74%);
+  --brand-400: hsl(248, 85%, 64%);
+  --brand-500: hsl(248, 80%, 55%);   /* Primary */
+  --brand-600: hsl(248, 74%, 46%);
+  --brand-700: hsl(248, 68%, 38%);
+  --brand-800: hsl(248, 60%, 30%);
+  --brand-900: hsl(248, 52%, 22%);
+
+  /* Accent */
+  --accent-cyan:   hsl(186, 90%, 50%);
+  --accent-pink:   hsl(320, 85%, 60%);
+  --accent-amber:  hsl(38,  95%, 55%);
+  --accent-emerald:hsl(152, 76%, 48%);
+
+  /* Semantic */
+  --color-success: hsl(152, 70%, 45%);
+  --color-warning: hsl(38,  90%, 50%);
+  --color-error:   hsl(0,   72%, 55%);
+  --color-info:    hsl(210, 80%, 55%);
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Font sizes (fluid) */
+  --fs-xs:  clamp(0.70rem, 1.5vw, 0.75rem);
+  --fs-sm:  clamp(0.82rem, 1.8vw, 0.875rem);
+  --fs-md:  clamp(0.95rem, 2.2vw, 1rem);
+  --fs-lg:  clamp(1.05rem, 2.5vw, 1.125rem);
+  --fs-xl:  clamp(1.2rem,  3vw,  1.25rem);
+  --fs-2xl: clamp(1.4rem,  4vw,  1.5rem);
+  --fs-3xl: clamp(1.75rem, 5vw,  2rem);
+  --fs-4xl: clamp(2rem,    6vw,  2.5rem);
+  --fs-5xl: clamp(2.4rem,  8vw,  3.5rem);
+
+  /* Spacing */
+  --sp-1:  0.25rem;
+  --sp-2:  0.5rem;
+  --sp-3:  0.75rem;
+  --sp-4:  1rem;
+  --sp-5:  1.25rem;
+  --sp-6:  1.5rem;
+  --sp-8:  2rem;
+  --sp-10: 2.5rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --sp-20: 5rem;
+
+  /* Borders */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.06);
+  --shadow-md:  0 4px 16px rgba(0,0,0,.14), 0 2px 6px rgba(0,0,0,.08);
+  --shadow-lg:  0 12px 40px rgba(0,0,0,.20), 0 4px 12px rgba(0,0,0,.10);
+  --shadow-xl:  0 24px 60px rgba(0,0,0,.28), 0 8px 20px rgba(0,0,0,.14);
+  --shadow-glow-brand: 0 0 40px hsla(248, 80%, 55%, .35);
+  --shadow-glow-cyan:  0 0 30px hsla(186, 90%, 50%, .30);
+
+  /* Transitions */
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 150ms;
+  --dur-mid:  250ms;
+  --dur-slow: 400ms;
+
+  /* Z-index layers */
+  --z-base:    1;
+  --z-dropdown: 100;
+  --z-header:  200;
+  --z-modal:   300;
+  --z-toast:   400;
+}
+
+/* ── Dark theme (default) ───────────────────────────────────── */
+[data-theme="dark"] {
+  --bg-base:    hsl(230, 20%, 8%);
+  --bg-surface: hsl(230, 18%, 12%);
+  --bg-elevated:hsl(230, 16%, 16%);
+  --bg-overlay: hsl(230, 14%, 20%);
+  --bg-glass:   hsla(230, 20%, 16%, 0.7);
+
+  --border-subtle: hsla(248, 30%, 50%, 0.12);
+  --border-default:hsla(248, 30%, 60%, 0.20);
+  --border-strong: hsla(248, 40%, 65%, 0.35);
+
+  --text-primary:   hsl(220, 30%, 96%);
+  --text-secondary: hsl(220, 15%, 68%);
+  --text-muted:     hsl(220, 10%, 48%);
+  --text-inverse:   hsl(230, 20%, 8%);
+
+  --orb-1: hsla(248, 80%, 55%, 0.18);
+  --orb-2: hsla(186, 90%, 50%, 0.12);
+  --orb-3: hsla(320, 85%, 60%, 0.10);
+}
+
+/* ── Light theme ────────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg-base:    hsl(220, 30%, 97%);
+  --bg-surface: hsl(0, 0%, 100%);
+  --bg-elevated:hsl(220, 25%, 96%);
+  --bg-overlay: hsl(220, 20%, 92%);
+  --bg-glass:   hsla(0, 0%, 100%, 0.75);
+
+  --border-subtle: hsla(248, 30%, 40%, 0.08);
+  --border-default:hsla(248, 30%, 40%, 0.15);
+  --border-strong: hsla(248, 40%, 40%, 0.28);
+
+  --text-primary:   hsl(230, 25%, 12%);
+  --text-secondary: hsl(230, 15%, 40%);
+  --text-muted:     hsl(230, 10%, 60%);
+  --text-inverse:   hsl(0, 0%, 100%);
+
+  --shadow-sm:  0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.03);
+  --shadow-md:  0 4px 16px rgba(0,0,0,.07), 0 2px 6px rgba(0,0,0,.04);
+  --shadow-lg:  0 12px 40px rgba(0,0,0,.10), 0 4px 12px rgba(0,0,0,.05);
+
+  --orb-1: hsla(248, 80%, 55%, 0.08);
+  --orb-2: hsla(186, 90%, 50%, 0.06);
+  --orb-3: hsla(320, 85%, 60%, 0.05);
+}
+
+/* ── Reset & Base ───────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure [hidden] always wins over display: flex/grid from component CSS */
+[hidden] { display: none !important; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--bg-base);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color var(--dur-slow) var(--ease-smooth),
+              color var(--dur-slow) var(--ease-smooth);
+}
+
+/* ── Background Orbs ────────────────────────────────────────── */
+.bg-orbs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: orb-float 20s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 600px; height: 600px;
+  top: -200px; left: -200px;
+  background: var(--orb-1);
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 500px; height: 500px;
+  bottom: -150px; right: -100px;
+  background: var(--orb-2);
+  animation-delay: -7s;
+}
+
+.orb-3 {
+  width: 400px; height: 400px;
+  top: 50%; left: 60%;
+  background: var(--orb-3);
+  animation-delay: -14s;
+}
+
+/* ── App Layout ─────────────────────────────────────────────── */
+#app {
+  position: relative;
+  z-index: var(--z-base);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: var(--bg-glass);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 var(--sp-6);
+}
+
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  text-decoration: none;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: var(--fs-xl);
+  transition: opacity var(--dur-fast) var(--ease-smooth);
+}
+
+.brand:hover { opacity: 0.8; }
+
+.brand-icon { font-size: 1.4em; line-height: 1; }
+
+.brand-name {
+  background: linear-gradient(135deg, var(--brand-400), var(--accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+/* ── Page Container ─────────────────────────────────────────── */
+.page-container {
+  flex: 1;
+  padding: var(--sp-8) var(--sp-6);
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ── Utility Classes ────────────────────────────────────────── */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.container-sm { max-width: 680px; }
+.container-md { max-width: 860px; }
+
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-2 { gap: var(--sp-2); }
+.gap-3 { gap: var(--sp-3); }
+.gap-4 { gap: var(--sp-4); }
+.gap-6 { gap: var(--sp-6); }
+
+.grid { display: grid; }
+.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+
+.text-center { text-align: center; }
+.text-right  { text-align: right; }
+.font-bold   { font-weight: 700; }
+.font-semibold{ font-weight: 600; }
+
+.text-primary   { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted     { color: var(--text-muted); }
+.text-brand     { color: var(--brand-400); }
+.text-success   { color: var(--color-success); }
+.text-warning   { color: var(--color-warning); }
+.text-error     { color: var(--color-error); }
+
+.mt-2  { margin-top: var(--sp-2); }
+.mt-4  { margin-top: var(--sp-4); }
+.mt-6  { margin-top: var(--sp-6); }
+.mt-8  { margin-top: var(--sp-8); }
+.mb-4  { margin-bottom: var(--sp-4); }
+.mb-6  { margin-bottom: var(--sp-6); }
+
+.w-full  { width: 100%; }
+.h-full  { height: 100%; }
+.hidden  { display: none !important; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--brand-500); }
+
+/* Selection */
+::selection {
+  background: hsla(248, 80%, 55%, .35);
+  color: var(--text-primary);
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .page-container { padding: var(--sp-4) var(--sp-4); }
+  .grid-cols-3 { grid-template-columns: 1fr; }
+  .grid-cols-2 { grid-template-columns: 1fr; }
+  .app-header { padding: 0 var(--sp-4); }
+}
+
+@media (max-width: 480px) {
+  .page-container { padding: var(--sp-3) var(--sp-3); }
+  .brand-name { font-size: var(--fs-lg); }
+}

@@ -1,0 +1,10 @@
+[
+  { "id": "s01", "name": "Nguyễn Minh Anh", "class": "10A1", "parentName": "Nguyễn Văn Hùng" },
+  { "id": "s02", "name": "Trần Thị Bích",   "class": "10A1", "parentName": "Trần Quốc Bảo" },
+  { "id": "s03", "name": "Lê Hoàng Dũng",   "class": "10A2", "parentName": "Lê Thị Mai" },
+  { "id": "s04", "name": "Phạm Thu Hà",     "class": "10A2", "parentName": "Phạm Văn Tuấn" },
+  { "id": "s05", "name": "Võ Quang Huy",    "class": "10A1", "parentName": "Võ Thị Lan" },
+  { "id": "s06", "name": "Đặng Ngọc Linh",  "class": "10A3", "parentName": "Đặng Văn Khoa" },
+  { "id": "s07", "name": "Bùi Thanh Nam",   "class": "10A3", "parentName": "Bùi Thị Hoa" },
+  { "id": "s08", "name": "Ngô Thị Quỳnh",   "class": "10A2", "parentName": "Ngô Văn Thắng" }
+]
