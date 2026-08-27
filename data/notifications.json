@@ -1,0 +1,42 @@
+[
+  {
+    "_id": "notif_01",
+    "studentId": "s01",
+    "type": "grade",
+    "message": "Bài Toán \"Đại số chương 1\" đã được chấm điểm: 9/10",
+    "time": "@daysAgo:2",
+    "read": false
+  },
+  {
+    "_id": "notif_02",
+    "studentId": "s01",
+    "type": "grade",
+    "message": "Bài Tiếng Anh \"Writing - My Dream Job\" đã được chấm điểm: 10/10",
+    "time": "@daysAgo:1",
+    "read": false
+  },
+  {
+    "_id": "notif_03",
+    "studentId": "s01",
+    "type": "deadline",
+    "message": "Nhắc nhở: Bài Hóa học \"Thực hành thí nghiệm HCl\" đến hạn hôm nay!",
+    "time": "@now",
+    "read": true
+  },
+  {
+    "_id": "notif_04",
+    "studentId": "s02",
+    "type": "grade",
+    "message": "Bài Toán \"Đại số chương 1\" đã được chấm điểm: 7.5/10",
+    "time": "@daysAgo:1",
+    "read": false
+  },
+  {
+    "_id": "notif_05",
+    "studentId": "s02",
+    "type": "grade",
+    "message": "Bài Văn \"Phân tích truyện Chí Phèo\" đã được chấm điểm: 9/10",
+    "time": "@daysAgo:4",
+    "read": true
+  }
+]

@@ -87,59 +87,44 @@ let SUBJECTS    = [];
 let SUBJECT_MAP = {};
 
 
-/* ── Seed Data ──────────────────────────────────────────────── */
-const SEED_SUBMISSIONS = [
-  // Toán
-  { id: uid(), studentId: 's01', studentName: 'Nguyễn Minh Anh', subject: 'toan', title: 'Bài tập Đại số chương 1', description: 'Giải các bài tập từ 1 đến 25 trang 45.', fileName: 'daiso_ch1_minhanh.pdf', submittedAt: daysAgo(5), deadline: daysAgo(3), status: 'graded', score: 9, feedback: 'Bài làm xuất sắc, trình bày rõ ràng. Cần xem lại bài 18.', gradedAt: daysAgo(2), gradedBy: 'Cô Nguyễn Thu' },
-  { id: uid(), studentId: 's02', studentName: 'Trần Thị Bích', subject: 'toan', title: 'Bài tập Đại số chương 1', description: 'Giải các bài tập từ 1 đến 25 trang 45.', fileName: 'daiso_ch1_bich.pdf', submittedAt: daysAgo(4), deadline: daysAgo(3), status: 'graded', score: 7.5, feedback: 'Trình bày khá tốt. Bài 12 sai phương pháp, cần ôn lại.', gradedAt: daysAgo(1), gradedBy: 'Cô Nguyễn Thu' },
-  { id: uid(), studentId: 's03', studentName: 'Lê Hoàng Dũng', subject: 'toan', title: 'Bài tập Đại số chương 1', description: 'Giải các bài tập từ 1 đến 25 trang 45.', fileName: 'daiso_ch1_dung.pdf', submittedAt: daysAgo(2), deadline: daysAgo(3), status: 'late', score: 6, feedback: 'Nộp trễ. Bài làm đạt yêu cầu nhưng cần cẩn thận hơn.', gradedAt: daysAgo(1), gradedBy: 'Cô Nguyễn Thu' },
-  { id: uid(), studentId: 's05', studentName: 'Võ Quang Huy', subject: 'toan', title: 'Bài tập Đại số chương 1', description: 'Giải các bài tập từ 1 đến 25 trang 45.', fileName: 'daiso_ch1_huy.pdf', submittedAt: daysAgo(6), deadline: daysAgo(3), status: 'graded', score: 8.5, feedback: 'Tốt! Phương pháp giải nhanh. Một vài lỗi tính toán nhỏ.', gradedAt: daysAgo(2), gradedBy: 'Cô Nguyễn Thu' },
-  { id: uid(), studentId: 's04', studentName: 'Phạm Thu Hà', subject: 'toan', title: 'Bài tập Đại số chương 1', description: 'Giải các bài tập từ 1 đến 25 trang 45.', fileName: 'daiso_ch1_ha.pdf', submittedAt: daysAgo(3), deadline: daysAgo(3), status: 'pending', score: null, feedback: '', gradedAt: null, gradedBy: '' },
+/* ── Seed Data (load từ data/submissions.json & data/notifications.json) ── */
+let SEED_SUBMISSIONS  = [];
+let SEED_NOTIFICATIONS = [];
 
-  // Văn
-  { id: uid(), studentId: 's01', studentName: 'Nguyễn Minh Anh', subject: 'van', title: 'Phân tích truyện Chí Phèo', description: 'Viết bài phân tích nhân vật Chí Phèo trong tác phẩm của Nam Cao.', fileName: 'van_chipheо_minhanh.docx', submittedAt: daysAgo(8), deadline: daysAgo(7), status: 'graded', score: 8, feedback: 'Ý tứ phong phú, văn phong trôi chảy. Cần dẫn chứng thêm.', gradedAt: daysAgo(5), gradedBy: 'Thầy Trần Hải' },
-  { id: uid(), studentId: 's02', studentName: 'Trần Thị Bích', subject: 'van', title: 'Phân tích truyện Chí Phèo', description: 'Viết bài phân tích nhân vật Chí Phèo trong tác phẩm của Nam Cao.', fileName: 'van_chipheо_bich.docx', submittedAt: daysAgo(7), deadline: daysAgo(7), status: 'graded', score: 9, feedback: 'Bài xuất sắc! Phân tích sâu sắc, cảm nhận tinh tế.', gradedAt: daysAgo(4), gradedBy: 'Thầy Trần Hải' },
-  { id: uid(), studentId: 's06', studentName: 'Đặng Ngọc Linh', subject: 'van', title: 'Phân tích truyện Chí Phèo', description: 'Viết bài phân tích nhân vật Chí Phèo trong tác phẩm của Nam Cao.', fileName: 'van_chipheо_linh.docx', submittedAt: daysAgo(6), deadline: daysAgo(7), status: 'graded', score: 7, feedback: 'Nội dung đúng hướng nhưng còn sơ sài. Cần mở rộng luận điểm.', gradedAt: daysAgo(3), gradedBy: 'Thầy Trần Hải' },
+/**
+ * Resolve placeholder timestamp trong JSON seed:
+ *   "@daysAgo:N"  → ISO string N ngày trước
+ *   "@now"        → ISO string hiện tại
+ */
+function resolveTimestamp(val) {
+  if (typeof val !== 'string') return val;
+  if (val === '@now') return now();
+  const m = val.match(/^@daysAgo:(\d+)$/);
+  if (m) return daysAgo(parseInt(m[1], 10));
+  return val;
+}
 
-  // Tiếng Anh
-  { id: uid(), studentId: 's01', studentName: 'Nguyễn Minh Anh', subject: 'anh', title: 'Writing - My Dream Job', description: 'Write a 300-word essay about your dream job.', fileName: 'eng_writing_minhanh.docx', submittedAt: daysAgo(3), deadline: daysAgo(2), status: 'graded', score: 10, feedback: 'Perfect! Excellent vocabulary, great structure. Keep it up!', gradedAt: daysAgo(1), gradedBy: 'Cô Emily' },
-  { id: uid(), studentId: 's03', studentName: 'Lê Hoàng Dũng', subject: 'anh', title: 'Writing - My Dream Job', description: 'Write a 300-word essay about your dream job.', fileName: 'eng_writing_dung.docx', submittedAt: daysAgo(3), deadline: daysAgo(2), status: 'graded', score: 6.5, feedback: 'Good effort. Grammar needs improvement. See corrections.', gradedAt: daysAgo(1), gradedBy: 'Cô Emily' },
-  { id: uid(), studentId: 's07', studentName: 'Bùi Thanh Nam', subject: 'anh', title: 'Writing - My Dream Job', description: 'Write a 300-word essay about your dream job.', fileName: 'eng_writing_nam.docx', submittedAt: daysAgo(2), deadline: daysAgo(2), status: 'pending', score: null, feedback: '', gradedAt: null, gradedBy: '' },
-  { id: uid(), studentId: 's08', studentName: 'Ngô Thị Quỳnh', subject: 'anh', title: 'Writing - My Dream Job', description: 'Write a 300-word essay about your dream job.', fileName: 'eng_writing_quynh.docx', submittedAt: daysAgo(4), deadline: daysAgo(2), status: 'graded', score: 8, feedback: 'Well written! Clear ideas and good vocabulary.', gradedAt: daysAgo(1), gradedBy: 'Cô Emily' },
-
-  // Vật lý
-  { id: uid(), studentId: 's04', studentName: 'Phạm Thu Hà', subject: 'ly', title: 'Bài tập Động học chất điểm', description: 'Giải bài tập chương 2 SGK Vật lý 10.', fileName: 'vatly_donghoc_ha.pdf', submittedAt: daysAgo(10), deadline: daysAgo(9), status: 'graded', score: 7, feedback: 'Hiểu lý thuyết tốt. Cần rèn luyện thêm phần bài tập nâng cao.', gradedAt: daysAgo(8), gradedBy: 'Thầy Phúc' },
-  { id: uid(), studentId: 's05', studentName: 'Võ Quang Huy', subject: 'ly', title: 'Bài tập Động học chất điểm', description: 'Giải bài tập chương 2 SGK Vật lý 10.', fileName: 'vatly_donghoc_huy.pdf', submittedAt: daysAgo(9), deadline: daysAgo(9), status: 'graded', score: 9.5, feedback: 'Xuất sắc! Phương pháp tư duy tốt, trình bày mạch lạc.', gradedAt: daysAgo(8), gradedBy: 'Thầy Phúc' },
-
-  // Hóa học
-  { id: uid(), studentId: 's06', studentName: 'Đặng Ngọc Linh', subject: 'hoa', title: 'Thực hành thí nghiệm HCl', description: 'Báo cáo thực hành phản ứng axit - bazơ.', fileName: 'hoahoc_thamhcl_linh.pdf', submittedAt: daysAgo(1), deadline: now(), status: 'pending', score: null, feedback: '', gradedAt: null, gradedBy: '' },
-  { id: uid(), studentId: 's07', studentName: 'Bùi Thanh Nam', subject: 'hoa', title: 'Thực hành thí nghiệm HCl', description: 'Báo cáo thực hành phản ứng axit - bazơ.', fileName: 'hoahoc_thamhcl_nam.pdf', submittedAt: daysAgo(1), deadline: now(), status: 'pending', score: null, feedback: '', gradedAt: null, gradedBy: '' },
-
-  // Tin học
-  { id: uid(), studentId: 's01', studentName: 'Nguyễn Minh Anh', subject: 'tin', title: 'Lập trình Python - Bài 3', description: 'Viết chương trình Python giải phương trình bậc 2.', fileName: 'python_bt3_minhanh.py', submittedAt: daysAgo(2), deadline: daysAgo(1), status: 'graded', score: 10, feedback: 'Code sạch, có comments đầy đủ, xử lý đủ các trường hợp!', gradedAt: daysAgo(1), gradedBy: 'Thầy Long' },
-  { id: uid(), studentId: 's08', studentName: 'Ngô Thị Quỳnh', subject: 'tin', title: 'Lập trình Python - Bài 3', description: 'Viết chương trình Python giải phương trình bậc 2.', fileName: 'python_bt3_quynh.py', submittedAt: daysAgo(2), deadline: daysAgo(1), status: 'graded', score: 8.5, feedback: 'Tốt! Logic đúng, cần xử lý thêm trường hợp delta âm.', gradedAt: daysAgo(1), gradedBy: 'Thầy Long' },
-
-  // Sinh học  
-  { id: uid(), studentId: 's04', studentName: 'Phạm Thu Hà', subject: 'sinh', title: 'Tiểu luận Di truyền học', description: 'Nghiên cứu về các quy luật di truyền của Mendel.', fileName: 'sinh_ditruyenhoc_ha.docx', submittedAt: daysAgo(15), deadline: daysAgo(14), status: 'graded', score: 8, feedback: 'Tiểu luận tốt, nội dung phong phú. Phần kết luận cần mạnh hơn.', gradedAt: daysAgo(12), gradedBy: 'Cô Hương' },
-];
-
-/* ── Notifications ──────────────────────────────────────────── */
-const SEED_NOTIFICATIONS = [
-  { id: uid(), studentId: 's01', type: 'grade', message: 'Bài Toán "Đại số chương 1" đã được chấm điểm: 9/10', time: daysAgo(2), read: false },
-  { id: uid(), studentId: 's01', type: 'grade', message: 'Bài Tiếng Anh "Writing - My Dream Job" đã được chấm điểm: 10/10', time: daysAgo(1), read: false },
-  { id: uid(), studentId: 's01', type: 'deadline', message: 'Nhắc nhở: Bài Hóa học "Thực hành thí nghiệm HCl" đến hạn hôm nay!', time: daysAgo(0), read: true },
-  { id: uid(), studentId: 's02', type: 'grade', message: 'Bài Toán "Đại số chương 1" đã được chấm điểm: 7.5/10', time: daysAgo(1), read: false },
-  { id: uid(), studentId: 's02', type: 'grade', message: 'Bài Văn "Phân tích truyện Chí Phèo" đã được chấm điểm: 9/10', time: daysAgo(4), read: true },
-];
+/** Duyệt mỗi bản ghi, resolve các field timestamp và gán id mới */
+function resolveSeedDates(records) {
+  const TS_FIELDS = ['submittedAt', 'deadline', 'gradedAt', 'time'];
+  return records.map(r => {
+    const entry = { ...r, id: uid() };
+    delete entry._id; // xóa _id placeholder, dùng id mới
+    TS_FIELDS.forEach(f => { if (entry[f] !== undefined && entry[f] !== null) entry[f] = resolveTimestamp(entry[f]); });
+    return entry;
+  });
+}
 
 /* ── DB Initialization ──────────────────────────────────────── */
 /* ── Config Loader ──────────────────────────────────────────── */
 async function loadConfig() {
   try {
-    const [studentsRes, subjectsRes, usersRes] = await Promise.all([
+    const [studentsRes, subjectsRes, usersRes, submissionsRes, notificationsRes] = await Promise.all([
       fetch('data/students.json'),
       fetch('data/subjects.json'),
       fetch('data/users.json'),
+      fetch('data/submissions.json'),
+      fetch('data/notifications.json'),
     ]);
     STUDENTS = await studentsRes.json();
     SUBJECTS = await subjectsRes.json();
@@ -148,6 +133,9 @@ async function loadConfig() {
     USERS    = raw.filter(u => !u._comment);
     // Rebuild SUBJECT_MAP sau khi load xong
     SUBJECT_MAP = Object.fromEntries(SUBJECTS.map(s => [s.value, s]));
+    // Resolve placeholder timestamps trong seed data
+    SEED_SUBMISSIONS  = resolveSeedDates(await submissionsRes.json());
+    SEED_NOTIFICATIONS = resolveSeedDates(await notificationsRes.json());
   } catch (err) {
     console.error('[StudentGrade] Lỗi load config JSON:', err);
     throw err;
